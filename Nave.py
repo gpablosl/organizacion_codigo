@@ -35,53 +35,53 @@ class Nave:
 
         glPopMatrix()
 
-        def actualizar(self, tiempo_delta):   
-            global disparando
-            global angulo_bala
-            global estado_anterior_espacio
-            #Leer los estados de las teclas que queremos
-            estado_tecla_arriba = glfw.get_key(window, glfw.KEY_UP)
-            estado_tecla_derecha = glfw.get_key(window, glfw.KEY_RIGHT)
-            estado_tecla_izquierda = glfw.get_key(window, glfw.KEY_LEFT)
-            estado_tecla_espacio = glfw.get_key(window, glfw.KEY_SPACE)
+    def actualizar(self, window, tiempo_delta ):   
+        global disparando
+        global angulo_bala
+        global estado_anterior_espacio
+        #Leer los estados de las teclas que queremos
+        estado_tecla_arriba = glfw.get_key(window, glfw.KEY_UP)
+        estado_tecla_derecha = glfw.get_key(window, glfw.KEY_RIGHT)
+        estado_tecla_izquierda = glfw.get_key(window, glfw.KEY_LEFT)
+        estado_tecla_espacio = glfw.get_key(window, glfw.KEY_SPACE)
 
-            # if (estado_tecla_espacio == glfw.PRESS and 
-            #     estado_anterior_espacio == glfw.RELEASE):
-            #     for i in range(3):
-            #         if not disparando[i]:
-            #             disparando[i] = True
-            #             posiciones_bala[i][0] = nave.posicion_x
-            #             posiciones_bala[i][1] = nave.posicion_y
-            #             angulo_bala[i] = nave.angulo + nave.fase
-            #             break
+        # if (estado_tecla_espacio == glfw.PRESS and 
+        #     estado_anterior_espacio == glfw.RELEASE):
+        #     for i in range(3):
+        #         if not disparando[i]:
+        #             disparando[i] = True
+        #             posiciones_bala[i][0] = nave.posicion_x
+        #             posiciones_bala[i][1] = nave.posicion_y
+        #             angulo_bala[i] = nave.angulo + nave.fase
+        #             break
 
-            #Revisamos estados y realizamos acciones
-            cantidad_movimiento = self.velocidad * tiempo_delta
-            if estado_tecla_arriba == glfw.PRESS:
-                self.posicion_x = self.posicion_x + (
-                    math.cos((self.angulo + self.fase) * math.pi / 180.0) * cantidad_movimiento
-                )
-                self.posicion_y = self.posicion_y + (
-                    math.sin((self.angulo + self.fase) * math.pi / 180.0) * cantidad_movimiento
-                )
+        #Revisamos estados y realizamos acciones
+        cantidad_movimiento = self.velocidad * tiempo_delta
+        if estado_tecla_arriba == glfw.PRESS:
+            self.posicion_x = self.posicion_x + (
+                math.cos((self.angulo + self.fase) * math.pi / 180.0) * cantidad_movimiento
+            )
+            self.posicion_y = self.posicion_y + (
+                math.sin((self.angulo + self.fase) * math.pi / 180.0) * cantidad_movimiento
+            )
 
-            cantidad_rotacion = self.velocidad_rotacion * tiempo_delta
-            if estado_tecla_izquierda == glfw.PRESS:
-                self.angulo = self.angulo + cantidad_rotacion
-                if self.angulo > 360.0:
-                    self.angulo = self.angulo - 360.0 
-            if estado_tecla_derecha == glfw.PRESS:
-                self.angulo = self.angulo - cantidad_rotacion
-                if self.angulo < 0.0:
-                    self.angulo = self.angulo + 360.0
-            estado_anterior_espacio = estado_tecla_espacio
+        cantidad_rotacion = self.velocidad_rotacion * tiempo_delta
+        if estado_tecla_izquierda == glfw.PRESS:
+            self.angulo = self.angulo + cantidad_rotacion
+            if self.angulo > 360.0:
+                self.angulo = self.angulo - 360.0 
+        if estado_tecla_derecha == glfw.PRESS:
+            self.angulo = self.angulo - cantidad_rotacion
+            if self.angulo < 0.0:
+                self.angulo = self.angulo + 360.0
+        estado_anterior_espacio = estado_tecla_espacio
 
-            if self.posicion_x > 1.05: 
-                self.posicion_x = -1.0
-            if self.posicion_x < -1.05: 
-                self.posicion_x = 1.0
-                
-            if self.posicion_y > 1.05: 
-                self.posicion_y = -1.0   
-            if self.posicion_y < -1.05: 
-                self.posicion_y = 1.0  
+        if self.posicion_x > 1.05: 
+            self.posicion_x = -1.0
+        if self.posicion_x < -1.05: 
+            self.posicion_x = 1.0
+            
+        if self.posicion_y > 1.05: 
+            self.posicion_y = -1.0   
+        if self.posicion_y < -1.05: 
+            self.posicion_y = 1.0  
