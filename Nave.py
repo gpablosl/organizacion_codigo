@@ -5,10 +5,7 @@ import glfw
 import math
 from Bala import *
 
-class Nave:
-    posicion_x = 0.0
-    posicion_y = 0.0
-    posicion_z = 0.0
+class Nave(Modelo):
     velocidad = 1.2
     angulo = 0.0
     velocidad_rotacion = 270.0
